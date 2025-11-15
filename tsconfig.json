@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": ["DOM", "ES2020", "ESNext"],
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "baseUrl": "./",
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "bundler",
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": false,
+    "useDefineForClassFields": true,
+    "noImplicitThis": false,
+    "paths": {
+      "@/*": ["./*"],
+      "@/main/*": ["./src/main/*"],
+      "@/render/*": ["./src/render/*"],
+      "@/components/*": ["./src/render/components/*"],
+      "@/domains/*": ["./src/domains/*"],
+      "@/constant/*": ["./src/domains/constant/*"],
+      "@/types/*": ["./src/domains/types/*"],
+      "@/validate/*": ["./src/domains/validate/*"]
+    }
+  },
+  "exclude": ["node_modules"],
+  "include": ["src"]
+}
