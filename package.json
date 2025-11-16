@@ -7,15 +7,36 @@
     "dev:render": "rsbuild dev --config ./builder/rsbuild.render.ts",
     "dev:main": "nodemon",
     "build:main": "rsbuild build --config ./builder/rsbuild.main.ts",
-    "lint": "pnpm biome check --write ./src"
+    "prepare": "npx simple-git-hooks",
+    "lint": "pnpm biome check --write ./src",
+    "cz": "git add . && git-cz"
   },
   "author": "moki 2893096286@qq.com",
   "bugs": {
     "url": "https://github.com/ClearLuvMoki/ILatex/issues"
   },
   "homepage": "https://github.com/ClearLuvMoki/ILatex#readme",
+  "lint-staged": {
+    "./src/**/*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
+      "pnpm run lint"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "commit-msg": "npx --no-install commitlint --edit ${1}",
+    "preserveUnused": [
+      "commit-msg"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
   "devDependencies": {
     "@biomejs/biome": "^2.3.5",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@hookform/resolvers": "^5.2.2",
     "@rsbuild/core": "^1.6.6",
     "@rsbuild/plugin-babel": "^1.0.6",
@@ -29,6 +50,8 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "commitizen": "^4.3.1",
+    "cz-git": "^1.12.0",
     "electron": "^39.1.2",
     "electron-builder": "^26.0.12",
     "electron-log": "^5.4.3",
@@ -40,6 +63,7 @@
     "posthog-node": "^5.11.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "simple-git-hooks": "^2.13.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.17",
