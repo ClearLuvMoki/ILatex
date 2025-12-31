@@ -4,4 +4,4 @@ release/**/*
 .idea
 .vscode
 .DS_Store
-node-compile-cache/**/*
+node-compile-cache
