@@ -1,33 +1,29 @@
-import { app, BrowserWindow } from "electron";
 import path from "node:path";
-import * as process from "node:process";
-import * as Sentry from "@sentry/electron";
-import { MainTools } from "./utils/tools";
+import { app, BaseWindow } from "electron";
+import { IPCFile, IPCFolder, IPCProject, IPCWindow } from "./ipc";
+import { createMenu } from "./menu";
 import { initStatistics } from "./statistics";
-import { IPCProject } from "./ipc";
+import { PreviewViewManager, SideViewManager, TabViewManager } from "./views";
 
-Sentry.init({
-  dsn: "https://dcf4c1ca7feaa198e792734e6d29f620@o4507683589062656.ingest.us.sentry.io/4510360903548933",
-});
+// Sentry.init({
+//   dsn: "https://dcf4c1ca7feaa198e792734e6d29f620@o4507683589062656.ingest.us.sentry.io/4510360903548933",
+// });
 
-// 禁止 GPU 加速
-// app.disableHardwareAcceleration();
-export let mainWindow: BrowserWindow | null = null;
-
-const loadUrl: string = MainTools.isDev
-  ? `http://localhost:${process.env.PORT}`
-  : `file://${path.resolve(__dirname, "../render/index.html")}`;
+export let mainWindow: BaseWindow | null = null;
 
 const initIpc = () => {
   IPCProject();
+  IPCFolder();
+  IPCFile();
+  IPCWindow();
 };
 
 const onCreateMainWindow = () => {
-  mainWindow = new BrowserWindow({
-    width: 1400,
-    minWidth: 1000,
-    height: 920,
-    minHeight: 700,
+  mainWindow = new BaseWindow({
+    width: 1700,
+    minWidth: 1200,
+    height: 1100,
+    minHeight: 1100,
     center: true,
     useContentSize: true,
     titleBarStyle: "hiddenInset",
@@ -37,15 +33,10 @@ const onCreateMainWindow = () => {
     transparent: true,
     trafficLightPosition: { x: 23, y: 22 },
     icon: path.resolve(__dirname, "./icon.png"),
-    webPreferences: {
-      devTools: true,
-      nodeIntegration: true,
-      webSecurity: false,
-      webviewTag: true,
-      preload: path.resolve(__dirname, "./preload.js"),
-    },
   });
-  mainWindow.loadURL(loadUrl);
+  SideViewManager.onCreate();
+  TabViewManager.onCreate();
+  PreviewViewManager.onCreate();
 };
 
 const gotTheLock = app.requestSingleInstanceLock();
@@ -62,6 +53,7 @@ if (!gotTheLock) {
 }
 
 app.on("ready", async () => {
+  createMenu();
   initStatistics();
   initIpc();
   onCreateMainWindow();

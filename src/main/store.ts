@@ -1,28 +1,28 @@
 import ElectronStore from "electron-store";
 
 const _store: any = new ElectronStore<{
-    equipmentId: string;
+  equipmentId: string;
 }>({
-    name: "ilatex-config",
-    clearInvalidConfig: true,
+  name: "ilatex-config",
+  clearInvalidConfig: true,
 });
 
 abstract class Store {
-    static hasKey(key: string): boolean {
-        return _store.has(key);
-    }
+  static hasKey(key: string): boolean {
+    return _store.has(key);
+  }
 
-    static setValue(key: string, value: string) {
-        return _store.set(key, value);
-    }
+  static setValue(key: string, value: string) {
+    return _store.set(key, value);
+  }
 
-    static getValue(key: string) {
-        return _store.get(key);
-    }
+  static getValue(key: string) {
+    return _store.get(key);
+  }
 
-    static deleteValue(key: string) {
-        return _store.delete(key);
-    }
+  static deleteValue(key: string) {
+    return _store.delete(key);
+  }
 }
 
 export default Store;

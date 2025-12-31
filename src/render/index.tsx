@@ -1,8 +1,11 @@
 import "./styles/globals.css";
 import ReactDOM from "react-dom/client";
-import {Layout} from "./layout";
+import { BrowserRouter } from "react-router";
+import { Routers } from "./router";
 
-const root = ReactDOM.createRoot(
-    document.getElementById("root") as HTMLDivElement,
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLDivElement);
+root.render(
+  <BrowserRouter>
+    <Routers />
+  </BrowserRouter>,
 );
-root.render(<Layout/>);

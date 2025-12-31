@@ -6,8 +6,7 @@
     "useIgnoreFile": false
   },
   "files": {
-    "ignoreUnknown": false,
-    "ignore": []
+    "ignoreUnknown": false
   },
   "formatter": {
     "enabled": true,
@@ -16,40 +15,48 @@
     "lineWidth": 100,
     "indentWidth": 2
   },
-  "organizeImports": {
-    "enabled": true
-  },
   "linter": {
     "enabled": true,
     "rules": {
-      "complexity": {
-        "noStaticOnlyClass": "off"
-      },
-      "style": {
-        "noNonNullAssertion": "off"
-      },
       "recommended": true,
+      "complexity": {
+        "noStaticOnlyClass": "off",
+        "noImportantStyles": "off"
+      },
       "security": {
         "noDangerouslySetInnerHtml": {
           "level": "off"
         }
       },
       "suspicious": {
-        "noAsyncPromiseExecutor": "off",
         "noExplicitAny": {
           "level": "off"
         }
       },
       "a11y": {
+        "noStaticElementInteractions": {
+          "level": "off"
+        },
+        "useKeyWithClickEvents": {
+          "level": "off"
+        },
         "noSvgWithoutTitle": {
           "level": "off"
         }
+      },
+      "style": {
+        "noNonNullAssertion": "off"
       }
     }
   },
   "javascript": {
     "formatter": {
       "quoteStyle": "double"
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
     }
   }
 }

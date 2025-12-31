@@ -1,3 +1,3 @@
 export interface ProjectType {
-    name: string;
+  name: string;
 }

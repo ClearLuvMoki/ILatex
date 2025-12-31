@@ -1,13 +1,9 @@
 import type { IpcMainInvokeEvent } from "electron";
-import z, { ZodTypeAny } from "zod";
-import { IPCError } from "./error";
+import type z from "zod";
+import type { ZodTypeAny } from "zod";
 
 export function IPCInvokeValidate<T extends ZodTypeAny>(schema: T) {
-  return function (
-    target: any,
-    propertyKey: string,
-    descriptor: PropertyDescriptor,
-  ) {
+  return (_target: any, _propertyKey: string, descriptor: PropertyDescriptor) => {
     const fn = descriptor.value;
     descriptor.value = function (...args: any[]) {
       const result = schema.safeParse(args[0]);

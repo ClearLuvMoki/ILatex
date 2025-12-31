@@ -1,3 +1,3 @@
 export const ElectronStoreKey = {
-    EquipmentId: "equipment_id",
+  EquipmentId: "equipment_id",
 };

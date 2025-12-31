@@ -1,4 +1,4 @@
 export interface FileType {
-    path: string;
-    name: string;
+  name: string;
+  parentPath: string;
 }

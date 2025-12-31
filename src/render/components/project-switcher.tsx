@@ -7,11 +7,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import { useDialogStore, useProjectStore } from "../store";
 
 export function ProjectSwitcher() {
@@ -28,9 +24,7 @@ export function ProjectSwitcher() {
                 <Projector className="size-3" />
               </div>
               {currentProject ? (
-                <span className="truncate font-medium">
-                  {currentProject.name}
-                </span>
+                <span className="truncate font-medium">{currentProject.name}</span>
               ) : (
                 <span>No Project</span>
               )}
@@ -60,9 +54,7 @@ export function ProjectSwitcher() {
                 </DropdownMenuItem>
               ))
             ) : (
-              <span className="text-[12px] text-gray-500 px-2">
-                No projects.
-              </span>
+              <span className="text-[12px] text-gray-500 px-2">No projects.</span>
             )}
             <DropdownMenuSeparator />
             <DropdownMenuItem className="gap-2 p-2">

@@ -1,5 +1,7 @@
-export interface  FolderTypes {
-    path: string;
-    name: string;
-    children: FolderTypes[] | FileType[]
+import type { FileType } from "./file";
+
+export interface FolderType {
+  name: string;
+  parentPath: string;
+  children: FolderType[] | FileType[];
 }
